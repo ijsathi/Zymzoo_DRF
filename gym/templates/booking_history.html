@@ -1,0 +1,14 @@
+
+<h2>Booking History</h2>
+<ul>
+    {% for booking in bookings %}
+    <li>
+        <h3>{{ booking.fitness_class.title }}</h3>
+        <p>Instructor: {{ booking.fitness_class.instructor }}</p>
+        <p>Schedule: {{ booking.fitness_class.schedule }}</p>
+        <p>Booked on: {{ booking.booked_at  }}</p>
+    </li>
+    {% endfor %}
+    
+</ul>
+<p><a href="{% url 'booking-history' %}">View Booking History API</a></p>

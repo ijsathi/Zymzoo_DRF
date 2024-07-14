@@ -1,0 +1,12 @@
+<h2>Fitness Classes</h2>
+<ul>
+    {% for fitness_class in fitness_classes %}
+    <li>
+        <h3>{{ fitness_class.title }}</h3>
+        <p>Instructor: {{ fitness_class.instructor }}</p>
+        <p>Schedule: {{ fitness_class.schedule }}</p>
+        <p>{{ fitness_class.description }}</p>
+        <!-- Add booking button or link here -->
+    </li>
+    {% endfor %}
+</ul>
