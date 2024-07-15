@@ -1,7 +1,7 @@
 from rest_framework import generics, viewsets, permissions, status
 # from django.contrib.auth.models import User
-from .models import MembershipPlan, Member, FitnessClass, Booking, GymUser
-from .serializers import UserSerializer, MembershipPlanSerializer, MemberSerializer, FitnessClassSerializer, BookingSerializer, UserLoginSerializer, BookingHistorySerializer
+from .models import MembershipPlan, Member, FitnessClass, Booking, GymUser, Instructor
+from .serializers import UserSerializer, MembershipPlanSerializer, MemberSerializer, FitnessClassSerializer, BookingSerializer, UserLoginSerializer, BookingHistorySerializer, InstructorSerializer
 from .permissions import IsAdminOrStaffOrReadOnly, IsOwnerOrAdminOrReadOnly
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
@@ -92,6 +92,10 @@ class MemberViewSet(viewsets.ModelViewSet):
     serializer_class = MemberSerializer
     # permission_classes = [IsOwnerOrAdminOrReadOnly]
     permission_classes = [IsAdminOrStaffOrReadOnly]
+
+class InstructorViewSet(viewsets.ModelViewSet):
+    queryset = Instructor.objects.all()
+    serializer_class = InstructorSerializer
 
 class FitnessClassViewSet(viewsets.ModelViewSet):
     queryset = FitnessClass.objects.all()

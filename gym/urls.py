@@ -1,10 +1,11 @@
 from django.urls import path, include
-from .views import UserRegistrationView, MembershipPlanViewSet, MemberViewSet, FitnessClassViewSet, BookingViewSet, UserLoginView, UserLogoutView, activate, fitness_classes_view, booking_history_view, BookingHistoryViewSet
+from .views import UserRegistrationView, MembershipPlanViewSet, MemberViewSet, FitnessClassViewSet, BookingViewSet, UserLoginView, UserLogoutView, activate, fitness_classes_view, booking_history_view, BookingHistoryViewSet, InstructorViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'membership-plans', MembershipPlanViewSet)
 router.register(r'members', MemberViewSet)
+router.register(r'instructors', InstructorViewSet)
 router.register(r'fitness-classes', FitnessClassViewSet)
 router.register(r'bookings', BookingViewSet, basename='booking')
 router.register(r'booking-history', BookingHistoryViewSet, basename='booking-history')

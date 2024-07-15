@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import MembershipPlan, Member, FitnessClass, Booking
+from .models import MembershipPlan, Member, FitnessClass, Booking, Instructor
 
 User = get_user_model()
 
@@ -46,7 +46,13 @@ class MemberSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ['staff_added']
 
+class InstructorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Instructor
+        fields = '__all__'
+
 class FitnessClassSerializer(serializers.ModelSerializer):
+    instructor = InstructorSerializer()
     class Meta:
         model = FitnessClass
         fields = '__all__'

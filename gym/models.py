@@ -21,6 +21,27 @@ class GymUser(AbstractUser):
         verbose_name='user permissions',
     )
 
+CATEGORY_CHOICES = [
+    ('Gym Fitness Trainer', 'Gym Fitness Trainer'),
+    ('Bodybuilding Trainer', 'Bodybuilding Trainer'),
+    ('Crossfit Trainer', 'Crossfit Trainer'),
+    ('Aerobics Instructor', 'Aerobics Instructor'),
+    ('Yoga Master', 'Yoga Master'),
+]
+
+class Instructor(models.Model):
+    name = models.CharField(max_length=100)
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES)
+    description = models.TextField()
+    age = models.IntegerField()
+    weight_kg = models.FloatField()
+    height_ft = models.FloatField()
+    occupation = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='gym/images/instructors/', default='gym/images/instructors/default_istractor.jpg')
+
+    def __str__(self):
+        return self.name
+
 # Models for Membership and Subscription Management:
 class MembershipPlan(models.Model):
     name = models.CharField(max_length=100)
@@ -45,9 +66,10 @@ class FitnessClass(models.Model):
     title = models.CharField(max_length=100)
     schedule = models.DateTimeField()
     duration_minutes_in_days = models.IntegerField(default=60)
-    instructor = models.CharField(max_length=100)
+    # instructor = models.CharField(max_length=100)
+    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
     description = models.TextField()
-    image = models.ImageField(upload_to='gym/images', default='gym/images/default_image.jpg')
+    image = models.ImageField(upload_to='gym/images/classes', default='gym/images/classes/default_image.jpg')
     intensity = models.CharField(choices=INTENSITY, max_length=20, default="Medium")
     def __str__(self):
         return self.title
