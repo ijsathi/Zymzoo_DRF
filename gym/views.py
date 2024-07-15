@@ -96,6 +96,7 @@ class MemberViewSet(viewsets.ModelViewSet):
 class InstructorViewSet(viewsets.ModelViewSet):
     queryset = Instructor.objects.all()
     serializer_class = InstructorSerializer
+    permission_classes = [IsAdminOrStaffOrReadOnly]
 
 class FitnessClassViewSet(viewsets.ModelViewSet):
     queryset = FitnessClass.objects.all()
