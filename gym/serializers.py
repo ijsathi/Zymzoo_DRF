@@ -41,6 +41,8 @@ class MembershipPlanSerializer(serializers.ModelSerializer):
         read_only_fields = ['staff_added']
 
 class MemberSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+    membership_plan = MembershipPlanSerializer()
     class Meta:
         model = Member
         fields = '__all__'

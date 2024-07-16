@@ -46,11 +46,13 @@ class Instructor(models.Model):
 class MembershipPlan(models.Model):
     name = models.CharField(max_length=100)
     duration_in_days = models.IntegerField()
+    fee = models.IntegerField(null=True)
     def __str__(self):
         return self.name
     
 
 class Member(models.Model):
+    
     user = models.OneToOneField(GymUser, on_delete=models.CASCADE)
     membership_plan = models.ForeignKey(MembershipPlan, on_delete=models.SET_NULL, null=True)
     def __str__(self):

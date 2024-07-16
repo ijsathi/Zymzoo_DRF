@@ -35,7 +35,7 @@ class UserRegistrationView(generics.CreateAPIView):
             # Generate token and confirmation link
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
-            confirm_link = f"http://127.0.0.1:8000/activate/{uid}/{token}/"
+            confirm_link = f"https://zymzoo.onrender.com//activate/{uid}/{token}/"
 
             # Send confirmation email
             email_subject = "Confirm your email"
