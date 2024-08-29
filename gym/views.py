@@ -73,10 +73,12 @@ class UserLoginView(APIView):
                 login(request, user)
                 token, _ = Token.objects.get_or_create(user=user)
                 return Response({
-                    'token': token.key, 
-                    'user_id': user.id, 
-                    'is_staff': user.is_staff  # Include is_staff in the response
-                }, status=status.HTTP_200_OK)
+                'token': token.key, 
+                'user_id': user.id, 
+                'is_staff': user.is_staff,  # or use 'is_staff_member' if using custom field
+                'first_name': user.first_name,
+                'last_name': user.last_name
+            }, status=status.HTTP_200_OK)
             else:
                 return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
